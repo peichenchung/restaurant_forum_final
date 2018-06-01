@@ -1,0 +1,35 @@
+<div class="container">
+
+  <h2><%= @restaurant.name %></h2>
+  <h5>[<%= @restaurant.category.name %>]</h5>
+
+  <table class="table table-striped table-bordered">
+    <tr>
+      <td class="col-md-4">
+        <% if @restaurant.image? %>
+          <%= image_tag @restaurant.image.url, width: '400px' %>
+        <% else %>
+          <%= image_tag ("800x600.png"), width: '400px' %>
+        <% end %>
+      </td>
+
+      <td class="col-md-8">
+        <b>Opening Hours: </b><%= @restaurant.opening_hours %><br>
+        <br>
+        <b>Tel: </b><%= @restaurant.tel %><br>
+        <br>
+        <b>Address: </b><%= @restaurant.address %><br>
+        <br>
+        <b>Description: </b><%= simple_format(@restaurant.description) %>
+      </td>
+    </tr>
+  </table>
+
+  <%= link_to 'Edit', edit_admin_restaurant_path, class: "btn btn-warning" %>
+  <%= link_to 'Delete', admin_restaurant_path, method: :delete, data: {confirm:"Are you sure?"}, class: "btn btn-warning" %>
+  <%= link_to 'Back to Index', admin_restaurants_path, class: "btn btn-primary" %>
+  <br>
+  <br>
+  <br>
+
+</div>

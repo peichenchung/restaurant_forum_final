@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+
+    <ul class="nav nav-tabs">
+      <li role="presentation"><%= link_to '首頁', restaurants_path %></li>
+      <li role="presentation"><%= link_to '最新動態', feeds_restaurants_path %></li>
+      <li role="presentation"><%= link_to 'Top10人氣餐廳', tops_restaurants_path %></li>
+      <li role="presentation" class="active"><%= link_to '美食達人', users_path %></li>
+    </ul>
+
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="page-header">
+        <h2>美食達人</h2>
+      </div>
+    </div>
+  
+    <% @users.each do |user| %>
+      <div class="col-md-3 col-sm-4 col-xs-6 text-center user-item">
+        <%= link_to user_path(user) do %>
+
+          <% if user.avatar? %>
+            <%= image_tag user.avatar.url, class: "img-rounded" %>
+          <% else %>
+            <%= image_tag ("128x128.png"), class: "img-rounded" %>
+          <% end %>
+          
+          <br>
+          
+          <h5><%= user.name %></h5>
+
+        <% end %>
+        
+        <%# 呼叫follow partial %>
+        <%= render partial: "shared/follow", locals: {user: user} %> 
+      </div>
+    <% end %>
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="container">
+
+  <%# 讀取@restaurant.errors的內容幫助使用者了解為何被退回 %>
+  <% if @restaurant.errors.any? %>
+    <h2>We have some errors here!</h2>
+    <ul>
+      <% @restaurant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+
+  <%= form_for [:admin, @restaurant] do |f| %>
+  <%# 用中括號標示來告訴Rails要去namespace找相對應的路徑 %>
+    <div class="form-group">
+      <%= f.label :category %>
+      <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "請選擇"}, {class: "form-control"} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>  
+
+    <div class="form-group">
+      <%= f.label :tel, "Tel" %>
+      <%= f.text_field :tel, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address, "Address" %>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :opening_hours, "Opening Hours" %>
+      <%= f.text_field :opening_hours, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, "Description" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :image, "Photo" %>
+      <%= image_tag @restaurant.image.url, width: '150px' if @restaurant.image? %>
+      <%= f.file_field :image %>
+    </div>
+    
+    <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %> &emsp;
+    <%= link_to 'Go to Index', admin_restaurants_path %>
+    </div>
+  <% end %>
+
+</div>

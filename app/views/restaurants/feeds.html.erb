@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+
+    <ul class="nav nav-tabs">
+      <li role="presentation"><%= link_to '首頁', restaurants_path %></li>
+      <li role="presentation" class="active"><%= link_to '最新動態', feeds_restaurants_path %></li>
+      <li role="presentation"><%= link_to 'Top10人氣餐廳', tops_restaurants_path %></li>
+      <li role="presentation"><%= link_to '美食達人', users_path %></li>
+    </ul>
+
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-10 col-md-offset-1">
+
+      <h2>餐廳最新動態</h2>
+      <hr>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class=panel-title">最新餐廳</h3>
+          </div>
+          <div class="panel-body">
+            <% @recent_restaurants.each do |restaurant| %>
+              <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
+              <p><%= restaurant.category.name %></p>
+              <p><%= truncate(restaurant.description, length: 80) %></p>
+              <hr>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class=panel-title">最新評論</h3>
+          </div>
+          <div class="panel-body">
+            <% @recent_comments.each do |comment| %>
+              <h4><%=link_to comment.restaurant.name, restaurant_path(comment.restaurant) %></h4>
+              <p><%= truncate(comment.content, length: 80) %></p>
+              <p><small>- by <%= link_to comment.user.name, user_path(comment.user) %></small></p>
+              <hr>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
