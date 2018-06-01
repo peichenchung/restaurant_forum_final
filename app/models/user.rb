@@ -22,7 +22,7 @@ class User < ApplicationRecord
   has_many :followings, through: :followships #一個User透過追蹤記錄追蹤很多其他User(followings)
   #注意：如果關聯設定了:through, :dependent就會被忽略, 所以只在其中一行做設定
 
-  has_many :inverse_followships, class_name: "Followship", foreign_eky: "following_id"
+  has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
   has_many :followers, through: :inverse_followships, source: :user #使用者的追蹤者
 
   mount_uploader :avatar, AvatarUploader
