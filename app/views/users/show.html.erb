@@ -49,6 +49,9 @@
         <% if @user.email == current_user.email %><%# 重要 %>
           <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary" %>
         <% end %>
+        
+        <%= render partial: "shared/follow", locals: {user: @user} %>
+        <%= render partial: "shared/friend", locals: {user: @user} %>
       </td>
     </tr>
   </table>
