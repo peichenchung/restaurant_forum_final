@@ -29,7 +29,7 @@
       <li><em><%= @followers.count %> followers </em></li>
       <li><em>  
         <%= link_to friend_list_user_path(@user) do %>
-          好友列表 (<%= @all_friends.count %> 個好友)
+          好友列表 (<%= @user.all_friends.count %> 個好友)
         <% end %>
       </em></li>
     </ul>
@@ -110,11 +110,11 @@
     <!-- friends -->
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= @all_friends.count %> 個好友</h3>
+        <h3 class="panel-title"><%= @user.all_friends.count %> 個好友</h3>
       </div>
 
       <ul class="list-group">
-        <% @all_friends.each do |friend| %>
+        <% @user.all_friends.each do |friend| %>
         <li class="list-group-item">
           <%= link_to user_path(friend) do %>
 

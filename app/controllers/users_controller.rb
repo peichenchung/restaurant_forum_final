@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :friend_list]
 
   def index
     @users = User.all
@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def friend_list
+    #@user = User.find(params[:id])
     @all_friends = current_user.all_friends
   end
 

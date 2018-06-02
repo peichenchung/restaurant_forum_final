@@ -2,12 +2,59 @@
   <div class="row">
     
     <h2>Friend List</h2>
+    <hr>
 
+<!----------------------------------- 上方區塊(好友邀請) ----------------------------------->
 
+    <% if @user = current_user %>
+      <div class="col-md-10">
 
+        <div class="panel panel-default">
 
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              你收到的好友邀請<small> (你有 ## 個好友邀請)</small>
+            </h3>
+          </div>
 
+          <div class="panel-body">
+          </div><!-- panel-body -->
 
+        </div><!-- panel-default -->
+
+        <div class="panel panel-default">
+          
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              你發出的好友邀請
+            </h3>
+          </div>
+
+          <div class="panel-body">
+          </div><!-- panel-body -->
+
+        </div><!-- panel-default -->
+
+      </div><!-- col-md-10 -->
+    <% end %><!-- if -->
+
+    <br>
+
+<!----------------------------------- 下方區塊(好友列表) ----------------------------------->
+
+    <div class="col-md-10">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @user.all_friends.count %> 個好友</h3>
+        </div>
+
+        <div class="panel-body">
+        </div><!-- panel-body -->
+
+      </div><!-- panel-default -->
+
+    </div><!-- col-md-10 -->
 
   </div>
 </div>
