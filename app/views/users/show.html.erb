@@ -27,6 +27,11 @@
       <li><em><%= @favorited_restaurants.count %> 收藏的餐廳 </em></li>
       <li><em><%= @followings.count %> followings </em></li>
       <li><em><%= @followers.count %> followers </em></li>
+      <li><em>  
+        <%= link_to friend_list_user_path(@user) do %>
+          好友列表 (<%= @all_friends.count %> 個好友)
+        <% end %>
+      </em></li>
     </ul>
     </td></tr>
 
@@ -105,7 +110,7 @@
     <!-- friends -->
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">好友列表</h3>
+        <h3 class="panel-title"><%= @all_friends.count %> 個好友</h3>
       </div>
 
       <ul class="list-group">
