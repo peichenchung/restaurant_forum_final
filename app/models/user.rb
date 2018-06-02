@@ -25,6 +25,9 @@ class User < ApplicationRecord
   has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
   has_many :followers, through: :inverse_followships, source: :user #使用者的追蹤者
 
+  has_many :friendships, dependent: :destroy #一個user擁有很多friendship記錄
+  has_many :friends, through: :friendships #透過friendship記錄,使用者擁有很多好友(user)
+
   mount_uploader :avatar, AvatarUploader
 
   validates_presence_of :name #註冊時name必填
