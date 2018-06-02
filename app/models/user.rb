@@ -28,6 +28,9 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy #一個user擁有很多friendship記錄
   has_many :friends, through: :friendships #透過friendship記錄,使用者擁有很多好友(user)
 
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :inverse_friends, through: inverse_friendships, source: :user
+
   mount_uploader :avatar, AvatarUploader
 
   validates_presence_of :name #註冊時name必填
@@ -42,5 +45,10 @@ class User < ApplicationRecord
 
   def friend?(user)
     self.friends.include?(user)
+  end
+
+  def all_friends
+    @all_friends = self.friends + self.inverse_friends
+    return @all_friends
   end
 end
