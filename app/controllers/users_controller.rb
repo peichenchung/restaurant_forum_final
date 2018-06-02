@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @favorited_restaurants = @user.favorited_restaurants
     @followings = @user.followings
     @followers = @user.followers # 需至 User Model 自訂方法
+    @all_friends = current_user.all_friends
   end
 
   def edit
@@ -24,6 +25,10 @@ class UsersController < ApplicationController
     #@user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user)
+  end
+
+  def friend_list
+    @all_friends = current_user.all_friends
   end
 
 
