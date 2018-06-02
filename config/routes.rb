@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   root "restaurants#index"
 
   resources :followships, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy]
 
   namespace :admin do
     resources :restaurants #會產生一組URL Helper和網址 對應到不同的Action
