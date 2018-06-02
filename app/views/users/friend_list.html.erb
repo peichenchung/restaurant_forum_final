@@ -50,6 +50,21 @@
         </div>
 
         <div class="panel-body">
+          <% @user.all_friends.each do |friend| %>
+            <div class="col-md-3 text-center user-item">
+              <%= link_to user_path(friend) do %>
+
+                <% if friend.avatar? %>
+                  <%= image_tag friend.avatar.url, class: "img-rounded" %>
+                <% else %>
+                  <%= image_tag ("128x128.png"), class: "img-rounded" %>
+                <% end %>
+                <br>
+                <h5><%= friend.name %></h5>
+              
+              <% end %>
+            </div>
+          <% end %>
         </div><!-- panel-body -->
 
       </div><!-- panel-default -->
