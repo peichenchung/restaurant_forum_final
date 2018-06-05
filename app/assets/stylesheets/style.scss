@@ -16,11 +16,11 @@
   border: 1px solid grey;
   border-radius: 4px;
   padding: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 .restaurant-item img {
-  max-height: 400px;
+  height: 250px; /* 限制圖片高度避免影響排版 */
   width: 100%;
 }
 
@@ -31,6 +31,10 @@
 .restaurant-item .caption h3 {
   margin-top: 3px;
   font-size: 120%;
+}
+
+.restaurant-item .caption p {
+  height: 80px; /* 限制餐廳描述區塊的高度一致避免影響排版 */
 }
 
 .restaurant-item .caption .category-label {
