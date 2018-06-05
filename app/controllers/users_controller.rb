@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :friend_list]
 
   def index
-    @users = User.all
+    @users = User.all.order(created_at: :desc) #最新加入的在前
   end
 
   def show
