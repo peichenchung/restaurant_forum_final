@@ -31,6 +31,11 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
+  has_many :friend_requests, dependent: :destroy #一個user有很多friend_request記錄
+  has_many :pending_friends, through: :friend_requests, source: :friend
+  #透過friend_request記錄,user擁有很多pending_friends(user主動加的好友)
+
+
   mount_uploader :avatar, AvatarUploader
 
   validates_presence_of :name #註冊時name必填
