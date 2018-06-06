@@ -12,4 +12,5 @@ class FriendRequestsController < ApplicationController
       flash[:alert] = "You already sent a friend request"
       redirect_back(fallback_location: root_path)
     end
+  end
 end
