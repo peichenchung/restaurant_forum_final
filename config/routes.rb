@@ -39,6 +39,9 @@ Rails.application.routes.draw do
   resources :followships, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]
 
+  resources :friend_requests, only: [:create, :update, :destroy]
+  # create: 送出交友請求, update: 接受交友請求, destroy: 取消/拒絕交友請求
+
   namespace :admin do
     resources :restaurants #會產生一組URL Helper和網址 對應到不同的Action
     resources :categories
