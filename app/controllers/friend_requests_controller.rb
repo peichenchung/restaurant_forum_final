@@ -13,4 +13,15 @@ class FriendRequestsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+
+  def destroy #取消送出的交友請求
+    @friend_request = current_user.friend_requests.where(friend_id: params[:friend_id]).first
+
+    if @friend_request.present?
+      @friend_request.destroy
+    end
+
+    flash[:alert] = "You just canceled a friend request"
+    redirect_back(fallback_location: root_path)
+  end
 end
