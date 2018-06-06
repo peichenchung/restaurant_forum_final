@@ -6,22 +6,43 @@
 
 <!----------------------------------- 上方區塊(好友邀請) ----------------------------------->
 
+    <!-- 收到的好友邀請 -->
     <% if @user = current_user %>
-      <div class="col-md-10">
+      <div class="col-md-12">
 
         <div class="panel panel-default">
 
           <div class="panel-heading">
             <h3 class="panel-title">
-              你收到的好友邀請<small> (你有 ## 個好友邀請)</small>
+              你收到的好友邀請
+              <small> (你有 <%= @user.inverse_pending_friends.count %> 個好友邀請)</small>
             </h3>
           </div>
 
           <div class="panel-body">
+
+            <% @user.inverse_pending_friends.each do |friend| %>
+              <div class="col-md-3 text-center user-item">
+                <%= link_to user_path(friend) do %>
+
+                  <% if friend.avatar? %>
+                    <%= image_tag friend.avatar.url, class: "img-rounded" %>
+                  <% else %>
+                    <%= image_tag ("128x128.png"), class: "img-rounded" %>
+                  <% end %>
+                  <br>
+                  <h5><%= friend.name %></h5>
+
+                <% end %>
+              </div>
+            <% end %>
+
           </div><!-- panel-body -->
 
         </div><!-- panel-default -->
 
+
+        <!-- 送出的好友邀請 -->
         <div class="panel panel-default">
           
           <div class="panel-heading">
@@ -31,18 +52,35 @@
           </div>
 
           <div class="panel-body">
+            
+            <% @user.pending_friends.each do |friend| %>
+              <div class="col-md-3 text-center user-item">
+                <%= link_to user_path(friend) do %>
+
+                  <% if friend.avatar? %>
+                    <%= image_tag friend.avatar.url, class: "img-rounded" %>
+                  <% else %>
+                    <%= image_tag ("128x128.png"), class: "img-rounded" %>
+                  <% end %>
+                  <br>
+                  <h5><%= friend.name %></h5>
+
+                <% end %>
+              </div>
+            <% end %>
+
           </div><!-- panel-body -->
 
         </div><!-- panel-default -->
 
-      </div><!-- col-md-10 -->
+      </div><!-- col-md-6 -->
     <% end %><!-- if -->
 
     <br>
 
 <!----------------------------------- 下方區塊(好友列表) ----------------------------------->
 
-    <div class="col-md-10">
+    <div class="col-md-12">
 
       <div class="panel panel-default">
         <div class="panel-heading">
