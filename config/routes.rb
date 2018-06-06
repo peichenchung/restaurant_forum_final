@@ -37,10 +37,19 @@ Rails.application.routes.draw do
   root "restaurants#index"
 
   resources :followships, only: [:create, :destroy]
-  resources :friendships, only: [:create, :destroy]
 
-  resources :friend_requests, only: [:create, :update, :destroy]
+  resources :friendships, only: [:destroy]
+  #把:create移到friend_requests下(先發出friend_request->對方同意->friendship才成立)
+
+  resources :friend_requests, only: [:create, :update, :destroy] do
   # create: 送出交友請求, update: 接受交友請求, destroy: 取消/拒絕交友請求
+    resources :friendships, only: [:create]
+    #把:create移到friend_requests下(先發出friend_request->對方同意->friendship才成立)
+
+    member do
+      delete :reject
+    end
+  end
 
   namespace :admin do
     resources :restaurants #會產生一組URL Helper和網址 對應到不同的Action
