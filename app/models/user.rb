@@ -31,10 +31,14 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
-  has_many :friend_requests, dependent: :destroy #一個user有很多friend_request記錄
+  has_many :friend_requests, dependent: :destroy #一個user有很多(送出的)friend_request記錄
   has_many :pending_friends, through: :friend_requests, source: :friend
   #透過friend_request記錄,user擁有很多pending_friends(user主動加的好友)
 
+  #一個user有很多(收到的)friend_request記錄
+  has_many :inverse_friend_requests, class_name: "FriendRequest", foreign_key: "friend_id"
+  has_many :inverse_pending_friends, through: :inverse_friend_requests, source: :user
+  #透過inverse_friend_requests,user擁有很多inverse_pending_friends(加user好友的人)
 
   mount_uploader :avatar, AvatarUploader
 
