@@ -14,7 +14,7 @@ class FriendRequestsController < ApplicationController
     end
   end
 
-  def destroy #取消送出的交友請求
+  def destroy #取消送出的交友請求 #cancel按鈕放在自己的好友列表中
     @friend_request = current_user.friend_requests.where(friend_id: params[:friend_id]).first
 
     if @friend_request.present?
