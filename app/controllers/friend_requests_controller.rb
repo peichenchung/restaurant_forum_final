@@ -40,5 +40,17 @@ class FriendRequestsController < ApplicationController
     flash[:alert] = "You just canceled a friend request"
     redirect_back(fallback_location: root_path)
   end
-  
+
+
+  def reject #拒絕(別人的)好友請求
+    @inverse_friend_request = current_user.inverse_friend_requests.where(friend_id: params[:id]).first
+
+    if @inverse_friend_request.present?
+      @inverse_friend_request.destroy
+    end
+
+    flash[:alert] = "You just rejected a friend request"
+    redirect_back(fallback_location: root_path)
+  end
+
 end
