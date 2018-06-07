@@ -74,6 +74,9 @@
                   <h5><%= friend.name %></h5>
 
                 <% end %>
+
+                <!-- 取消送出的好友請求(連到friend_request#destroy action) -->
+                <%= link_to 'Cancel', friend_request_path(friend_id: friend), method: :delete, class: "btn btn-danger" %>
               </div>
             <% end %>
 
