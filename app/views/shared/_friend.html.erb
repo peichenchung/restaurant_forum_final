@@ -1,8 +1,21 @@
-<% if user != current_user %>
-  <% if current_user.friend?(user) %>
+<!----------------------------- Friend/Unfriend button ----------------------------->
+
+<% if user != current_user %><!-- 不會在自己的頭像下看到friend/unfriend button -->
+
+  <!-- 如果current_user有送出好友請求給user -->
+  <% if current_user.pending_friends.include?(user) %>
+    <%# show nothing %>
+
+  <!-- 如果user有送出好友請求給current_user -->
+  <% elsif current_user.inverse_pending_friends.include?(user) %>
+    <%# show nothing %>
+
+  <% elsif current_user.friend?(user) %>
     <%= link_to 'Unfriend', friendship_path(user), method: :delete, class: "btn btn-danger" %>
+
   <% else %>
     <%= link_to 'Friend', friend_requests_path(friend_id: user), method: :post, class: "btn btn-default" %>
     <!-- 原本是link到friendships#create 改成link到friend_requests#create -->
   <% end %>
+
 <% end %>
