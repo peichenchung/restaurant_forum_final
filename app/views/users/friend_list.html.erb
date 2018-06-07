@@ -37,7 +37,7 @@
                 
                 <!-- 按了Accept後,會在Friendship建立一筆新的friend_ship記錄,並刪除friend_request記錄 -->
                 <!-- 連到friend_request#update action -->
-                <%= link_to 'Accept', friend_requests_path(friend_id: friend), method: :patch, class: "btn btn-default"%>
+                <%= link_to 'Accept', friend_request_path(friend_id: friend), method: :patch, class: "btn btn-default"%>
 
                 <!-- 按了Reject後,會刪除friend_request的記錄 -->
                 <!-- 連到friend_request#reject action -->
