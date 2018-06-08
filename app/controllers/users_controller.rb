@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def friend_list
     #@user = User.find(params[:id])
-    @all_friends = current_user.all_friends
+    @all_friends = @user.all_friends
   end
 
 

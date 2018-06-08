@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     
-    <h2>Friend List</h2>
+    <h2><%= @user.name %>'s Friend List</h2>
     <hr>
 
 <!----------------------------------- 上方區塊(好友邀請) ----------------------------------->
 
     <!-- 收到的好友邀請 -->
-    <% if @user = current_user %>
+    <% unless current_user != @user %><!-- 自己的朋友列表才看得到好友邀請 -->
       <div class="col-md-12">
 
         <div class="panel panel-default">
@@ -85,6 +85,7 @@
         </div><!-- panel-default -->
 
       </div><!-- col-md-6 -->
+
     <% end %><!-- if -->
 
     <br>
@@ -95,7 +96,7 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">你有 <%= @user.all_friends.count %> 個好友</h3>
+          <h3 class="panel-title"><%= @user.all_friends.count %> 個好友</h3>
         </div>
 
         <div class="panel-body">
