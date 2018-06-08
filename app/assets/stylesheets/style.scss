@@ -34,7 +34,7 @@
 }
 
 .restaurant-item .caption p {
-  height: 80px; /* 限制餐廳描述區塊的高度一致避免影響排版 */
+  height: 80px; /* 定義餐廳描述區塊的高度一致避免影響排版 */
 }
 
 .restaurant-item .caption .category-label {
@@ -55,6 +55,7 @@
 
 .user-item {
   margin-bottom: 25px;
+  height: 200px; /* 定義高度避免影響排版 */
 }
 
 .user-item img {
